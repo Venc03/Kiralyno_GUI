@@ -1,8 +1,13 @@
 package Fields;
 
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Random;
 
 public class Tabla {
+
     private boolean T[][];
     private boolean UresCella;
 
@@ -29,22 +34,35 @@ public class Tabla {
         }
     }
 
-    public void Fajlbair() {
-        
-    }
-
-    public void Megjelenit() {
-        for (int i = 0; i < T.length; i++) {
-            for (int j = 0; j < T[i].length; j++) {
-                if (T[i][j]) {
-                    System.out.print("K ");
-                } else {
-                    System.out.print("# ");
-                }
+    public void Fajlbair(String file) {
+        try {
+            FileWriter W = new FileWriter(file);
+            for (int i = 0; i < 64; i++) {
+                String txt = Megjelenit();
+                W.write(txt);
             }
-            System.out.println();
+            W.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
     }
+
+    public String Megjelenit() {
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < T.length; i++) {
+        for (int j = 0; j < T[i].length; j++) {
+            if (T[i][j]) {
+                sb.append("K ");
+            } else {
+                sb.append("# ");
+            }
+        }
+        sb.append("\n");
+    }
+    return sb.toString();
+}
 
     public int UresOszlop() {
         for (int j = 0; j < T[0].length; j++) {
@@ -55,9 +73,11 @@ public class Tabla {
                     break;
                 }
             }
-            if (isEmpty) return j;
+            if (isEmpty) {
+                return j;
+            }
         }
-        return -1; 
+        return -1;
     }
 
     public int UresSor() {
@@ -69,8 +89,10 @@ public class Tabla {
                     break;
                 }
             }
-            if (isEmpty) return i;
+            if (isEmpty) {
+                return i;
+            }
         }
-        return -1; 
+        return -1;
     }
 }
