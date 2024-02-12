@@ -30,7 +30,7 @@ public class Tabla {
     }
 
     public void Fajlbair() {
-        // Implement file writing logic here
+        
     }
 
     public void Megjelenit() {
@@ -57,7 +57,7 @@ public class Tabla {
             }
             if (isEmpty) return j;
         }
-        return -1; // No empty column found
+        return -1; 
     }
 
     public int UresSor() {
@@ -71,6 +71,6 @@ public class Tabla {
             }
             if (isEmpty) return i;
         }
-        return -1; // No empty row found
+        return -1; 
     }
 }
